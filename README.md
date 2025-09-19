@@ -93,9 +93,9 @@ Subdomain Count
 
 Performance: (Replace these with the scores from your training script's output)
 
-Accuracy: XX.XX%
+Accuracy: 87.62%
 
-Precision: 0.XX
+Precision: 0.27
 
 📜 License
 This project is licensed under the MIT License.
