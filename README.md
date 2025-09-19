@@ -1,70 +1,107 @@
-Project Report: AI-Powered Phishing URL Detector
-1. Abstract
-This document outlines the development of a machine learning-based Phishing URL Detector. The project aims to address the persistent cybersecurity threat of phishing by creating an intelligent system capable of classifying URLs as either 'Legitimate' or 'Phishing'. The system uses a RandomForestClassifier trained on features extracted from a large dataset of URLs. The final output is a functional web application where a user can input a URL and receive a real-time prediction of its authenticity.
 
-2. Methodology
-The project was executed in a series of sequential steps, from data collection and preparation to model training and deployment.
+# AI-Powered Phishing URL Detector 🎣
 
-2.1. Data Collection
-Two distinct datasets were used to create a comprehensive training corpus:
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![Framework](https://img.shields.io/badge/Flask-2.0-lightgrey)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-Legitimate URLs: Sourced from the Tranco Top 1 Million list, providing a large and diverse set of safe domains.
+A web application that uses a machine learning model to detect phishing URLs in real-time. This project demonstrates a complete machine learning workflow, from data preparation and feature engineering to model training and deployment as a web service.
 
-Phishing URLs: Sourced from a verified online collection containing examples of real-world phishing links.
+---
 
-2.2. Data Preprocessing
-The raw data was cleaned and standardized to ensure model accuracy. The most critical preprocessing step was URL Normalization. A custom function was created to ensure every URL in the dataset (both legitimate and phishing) was formatted with a protocol (https://). This step was vital for maintaining consistency during feature extraction and preventing the model from learning incorrect patterns based on URL format.
+## 🚀 Key Features
 
-2.3. Feature Engineering
-Four key features were engineered from each URL string to provide the model with quantitative data for classification:
+* **Real-time Prediction:** Instantly classifies a URL as either 'Legitimate' or 'Phishing'.
+* **Machine Learning Model:** Utilizes a trained `RandomForestClassifier` for high accuracy.
+* **Feature Engineering:** Extracts key features from URLs, including URL length, subdomain count, dot count, and the presence of sensitive keywords.
+* **Simple Web Interface:** An easy-to-use interface built with Flask and HTML for user interaction.
+* **Trained on Diverse Data:** The model was trained on the Tranco Top 1 Million list for legitimate URLs and a verified online collection for phishing URLs.
 
-URL Length: The total number of characters in the URL string.
+---
 
-Dot Count: The number of periods (.) in the URL.
+## 🛠️ Technologies Used
 
-Sensitive Word Count: A binary feature that checks for the presence of keywords often associated with phishing (e.g., login, secure, account, verify).
+* **Backend:** Python, Flask
+* **Machine Learning:** Scikit-learn, Pandas
+* **Model Persistence:** Joblib
+* **Frontend:** HTML
 
-Subdomain Count: The number of parts in the URL's hostname (e.g., www.google.com has 3).
+---
 
-2.4. Model Training and Evaluation
-Model Choice: A RandomForestClassifier was selected due to its high performance and robustness in classification tasks.
+## 📁 Project Structure
 
-Handling Imbalance: To address the imbalance between the number of legitimate and phishing URLs, two techniques were used:
+phishing-url-detector/
+│
+├── app.py                      # Main Flask application script
+├── phishing_url_detector.joblib  # The trained machine learning model
+├── prepare_data.py             # Script for data cleaning and preparation
+├── train_model.py              # Script for training the model
+├── requirements.txt            # List of Python dependencies
+│
+└── templates/
+└── index.html              # The HTML file for the web interface
 
-Stratified Splitting: When splitting the data into training and testing sets, stratify=y was used to ensure both sets had the same proportion of phishing and legitimate examples.
 
-Class Weighting: During training, the class_weight='balanced' parameter was set, which automatically gives more importance to the minority class (phishing URLs), preventing the model from being biased towards the majority class.
+---
 
-Evaluation: The model's performance was measured using standard classification metrics, including Accuracy, Precision, and Recall.
+## ⚙️ Setup and Installation
 
-3. Tools and Technologies
-Language: Python 3
+To run this project on your local machine, follow these steps:
 
-Libraries:
+**1. Clone the Repository**
+(Replace `YOUR_USERNAME/YOUR_REPOSITORY` with your actual GitHub details)
+```bash
+git clone [https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git)
+cd YOUR_REPOSITORY
+2. Install Dependencies
+It's recommended to create a virtual environment. Then, install the required libraries from the requirements.txt file.
 
-Pandas: For data manipulation and processing.
+Bash
 
-Scikit-learn: For feature engineering, model training, and evaluation.
+pip install -r requirements.txt
+(If you don't have a requirements.txt file, create one with the content below or install libraries manually: pip install flask pandas scikit-learn joblib)
 
-Joblib: For saving and loading the trained model.
+requirements.txt content:
 
-Flask: For creating the final web application.
+pandas
+scikit-learn
+joblib
+flask
+3. Run the Application
+Execute the main Flask script to start the web server.
 
-Frontend: HTML
+Bash
 
-4. Results
-The trained model successfully learned the patterns differentiating phishing links from legitimate ones. The final output is a functional web application that loads the saved model (phishing_url_detector.joblib) and provides real-time predictions with a confidence score. The system correctly identifies common phishing techniques like typosquatting and keyword stuffing.
+python app.py
+4. Access the Website
+Open your web browser and navigate to the following address:
+http://127.0.0.1:5000
 
-5. Conclusion and Future Work
-This project successfully demonstrates the effectiveness of using a RandomForestClassifier for phishing detection. By carefully preprocessing the data and engineering relevant features, a reliable and accurate model was created.
+📈 Model Details
+Model: RandomForestClassifier
 
-Future improvements could include:
+Features Used:
 
-Expanding the Feature Set: Incorporating more advanced features, such as domain age (from a WHOIS lookup) or SSL certificate status.
+URL Length
 
-Regular Retraining: Creating a pipeline to automatically retrain the model with new phishing URLs to keep it effective against emerging threats.
+Dot Count
 
-Using More Advanced Models: Experimenting with gradient boosting models (like XGBoost) or neural networks for potentially higher accuracy.
+Sensitive Word Count
+
+Subdomain Count
+
+Performance: (Replace these with the scores from your training script's output)
+
+Accuracy: XX.XX%
+
+Precision: 0.XX
+
+📜 License
+This project is licensed under the MIT License.
+
+
+
 
 
 
